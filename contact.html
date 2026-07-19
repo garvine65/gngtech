@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Contact G&G Tech for websites, apps, systems, software, IT consulting, and technical support."
+    >
+    <title>Contact G&G Tech | Start Your Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="G&G Tech home">
+        <span class="brand-mark">G&amp;G</span>
+        <span class="brand-name">TECH</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">Process</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a class="nav-cta" href="contact.html">Get Started</a>
+    </header>
+
+    <main>
+      <section class="contact-page">
+        <div class="contact-intro">
+          <p class="eyebrow">Contact us</p>
+          <h1>Tell us what you want to build.</h1>
+          <p class="hero-copy">
+            Share the service you need, your email address, and a short note. Your message will be prepared for
+            <a href="mailto:admin@gngtech.co.ke">admin@gngtech.co.ke</a>.
+          </p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <label for="service">Service needed</label>
+          <select id="service" name="service" required>
+            <option value="">Choose a service</option>
+            <option>Website Design & Development</option>
+            <option>Mobile & Web Apps</option>
+            <option>Business Systems</option>
+            <option>Software Solutions</option>
+            <option>IT Consulting</option>
+            <option>Support & Improvement</option>
+            <option>General IT Services</option>
+          </select>
+
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="7"
+            placeholder="Briefly describe what you need, your timeline, and any important details."
+            required
+          ></textarea>
+
+          <button class="primary-button form-button" type="submit">Send Message</button>
+          <p class="form-note">This opens your email app so you can review and send the message.</p>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const selectedService = params.get("service");
+      const serviceField = document.querySelector("#service");
+      const form = document.querySelector("#contactForm");
+
+      if (selectedService) {
+        serviceField.value = selectedService;
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const service = document.querySelector("#service").value;
+        const email = document.querySelector("#email").value;
+        const message = document.querySelector("#message").value;
+        const subject = encodeURIComponent(`G&G Tech inquiry: ${service}`);
+        const body = encodeURIComponent(
+          `Service needed: ${service}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:admin@gngtech.co.ke?subject=${subject}&body=${body}`;
+      });
+    </script>
+  </body>
+</html>
