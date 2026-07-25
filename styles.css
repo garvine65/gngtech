@@ -455,6 +455,62 @@ h2 {
   line-height: 1.5;
 }
 
+.form-status {
+  padding: 18px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.form-status.success {
+  background: rgba(201, 255, 217, 0.65);
+  border: 1px solid rgba(23, 111, 115, 0.4);
+  color: var(--ink);
+}
+
+.form-status.success h3 {
+  margin-bottom: 8px;
+  color: var(--deep);
+  font-size: 1.15rem;
+}
+
+.form-status.info {
+  background: rgba(238, 249, 255, 0.9);
+  border: 1px solid rgba(85, 211, 219, 0.5);
+  color: var(--ink);
+}
+
+.form-status.error {
+  background: rgba(255, 235, 235, 0.9);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #842029;
+}
+
+.form-status code {
+  background: rgba(16, 42, 50, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.status-fallback {
+  margin-top: 14px;
+}
+
+.fallback-btn,
+.reset-btn {
+  margin-top: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.form-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
 @media (max-width: 900px) {
   .site-header {
     flex-wrap: wrap;
