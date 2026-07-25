@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="G&G Tech builds websites, apps, business systems, software, and practical IT solutions for teams in Kenya and beyond."
+      content="G&G Tech is a Kenyan technology company building modern websites, mobile apps, custom business systems, software, and IT solutions for clients in Kenya and beyond."
     >
-    <title>G&G Tech | IT Services, Websites, Apps & Systems</title>
+    <title>G&G Tech | Kenyan IT Services, Websites, Apps & Business Systems</title>
+    
+    <!-- Open Graph & Social Media Preview Tags -->
+    <meta property="og:title" content="G&G Tech | Reliable IT Services, Websites & Apps in Kenya">
+    <meta property="og:description" content="Designs and builds websites, mobile apps, business systems, and IT solutions for teams in Kenya and globally.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gngtech.co.ke">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,12 +28,24 @@
       <a class="brand" href="index.html" aria-label="G&G Tech home">
         <span class="brand-mark">G&amp;G</span>
         <span class="brand-name">TECH</span>
+        <span class="kenya-badge" title="Proudly Kenyan Technology Company">
+          <span class="kenya-flag-icon" aria-hidden="true">🇰🇪</span>
+          <span class="kenya-text">KENYA</span>
+        </span>
       </a>
 
-      <nav class="main-nav" aria-label="Main navigation">
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
         <a href="#services">Services</a>
         <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
         <a href="contact.html">Contact</a>
+        <a class="mobile-nav-cta" href="contact.html">Get Started 🇰🇪</a>
       </nav>
 
       <a class="nav-cta" href="contact.html">Get Started</a>
@@ -34,8 +53,10 @@
 
     <main>
       <section class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">gngtech.co.ke</p>
+        <div class="hero-content reveal-on-scroll">
+          <p class="eyebrow kenya-eyebrow">
+            <span class="flag-emoji">🇰🇪</span> PROUDLY BASED IN KENYA &bull; SERVING GLOBAL TEAMS
+          </p>
           <h1>Reliable IT services for businesses ready to build smarter.</h1>
           <p class="hero-copy">
             G&amp;G Tech designs and builds websites, mobile apps, business systems,
@@ -46,10 +67,19 @@
             <a class="primary-button" href="contact.html">Start a Project</a>
             <a class="secondary-button" href="#services">Explore Services</a>
           </div>
+
+          <div class="hero-trust-badges">
+            <span class="trust-item"><span class="check-icon">✓</span> M-Pesa &amp; API Ready</span>
+            <span class="trust-item"><span class="check-icon">✓</span> Fast Delivery</span>
+            <span class="trust-item"><span class="check-icon">✓</span> Post-Launch Support</span>
+          </div>
         </div>
 
-        <div class="hero-visual" aria-label="G&G Tech service preview">
-          <div class="logo-panel">
+        <div class="hero-visual reveal-on-scroll" aria-label="G&G Tech service preview">
+          <div class="logo-panel interactive-card">
+            <div class="kenya-hero-pill">
+              <span class="flag-emoji">🇰🇪</span> G&amp;G TECH KENYA
+            </div>
             <span class="big-logo">
               <span>G</span><span>&amp;</span><span>G</span>
             </span>
@@ -57,17 +87,17 @@
           </div>
 
           <div class="service-stack">
-            <a href="contact.html?service=Website%20Design%20%26%20Development">
+            <a class="interactive-card" href="contact.html?service=Website%20Design%20%26%20Development">
               <span>01</span>
               <strong>Websites</strong>
               <p>Modern sites that turn visitors into customers.</p>
             </a>
-            <a href="contact.html?service=Mobile%20%26%20Web%20Apps">
+            <a class="interactive-card" href="contact.html?service=Mobile%20%26%20Web%20Apps">
               <span>02</span>
-              <strong>Apps & Systems</strong>
+              <strong>Apps &amp; Systems</strong>
               <p>Tools built around the way your team works.</p>
             </a>
-            <a href="contact.html?service=IT%20Consulting">
+            <a class="interactive-card" href="contact.html?service=IT%20Consulting">
               <span>03</span>
               <strong>IT Consulting</strong>
               <p>Clear technical guidance before you invest.</p>
@@ -77,69 +107,147 @@
       </section>
 
       <section class="services" id="services">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">What we do</p>
           <h2>Practical technology, built for everyday business needs.</h2>
         </div>
 
         <div class="service-grid">
-          <a class="service-card" href="contact.html?service=Website%20Design%20%26%20Development">
-            <h3>Website Design & Development</h3>
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Website%20Design%20%26%20Development">
+            <div class="card-badge">Web</div>
+            <h3>Website Design &amp; Development</h3>
             <p>Business websites, landing pages, portfolios, ecommerce foundations, and redesigns.</p>
           </a>
-          <a class="service-card" href="contact.html?service=Mobile%20%26%20Web%20Apps">
-            <h3>Mobile & Web Apps</h3>
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Mobile%20%26%20Web%20Apps">
+            <div class="card-badge">Apps</div>
+            <h3>Mobile &amp; Web Apps</h3>
             <p>Clean, responsive applications for customers, staff, booking, reporting, and operations.</p>
           </a>
-          <a class="service-card" href="contact.html?service=Business%20Systems">
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Business%20Systems">
+            <div class="card-badge">Systems</div>
             <h3>Business Systems</h3>
             <p>Custom dashboards, management systems, automations, and workflow tools.</p>
           </a>
-          <a class="service-card" href="contact.html?service=Software%20Solutions">
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Software%20Solutions">
+            <div class="card-badge">Software</div>
             <h3>Software Solutions</h3>
             <p>Tailored software that connects data, users, and business processes in one place.</p>
           </a>
-          <a class="service-card" href="contact.html?service=IT%20Consulting">
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=IT%20Consulting">
+            <div class="card-badge">Consulting</div>
             <h3>IT Consulting</h3>
             <p>Advice on platforms, hosting, security, integrations, and product planning.</p>
           </a>
-          <a class="service-card" href="contact.html?service=Support%20%26%20Improvement">
-            <h3>Support & Improvement</h3>
+          <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Support%20%26%20Improvement">
+            <div class="card-badge">Support</div>
+            <h3>Support &amp; Improvement</h3>
             <p>Ongoing updates, troubleshooting, performance tuning, and technical maintenance.</p>
           </a>
         </div>
       </section>
 
       <section class="process" id="process">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">How we work</p>
           <h2>A simple path from idea to launch.</h2>
         </div>
 
         <div class="steps">
-          <article>
-            <span>Discover</span>
-            <p>We understand your goals, users, budget, and the problem the technology should solve.</p>
+          <article class="interactive-card reveal-on-scroll">
+            <span>01 / Discover</span>
+            <p>We understand your goals, users, budget, and the exact problem the technology should solve.</p>
           </article>
-          <article>
-            <span>Build</span>
+          <article class="interactive-card reveal-on-scroll">
+            <span>02 / Build</span>
             <p>We design, develop, test, and keep you involved with clear progress updates.</p>
           </article>
-          <article>
-            <span>Launch</span>
+          <article class="interactive-card reveal-on-scroll">
+            <span>03 / Launch</span>
             <p>We deploy, hand over, and support the solution so it keeps serving your business.</p>
           </article>
         </div>
       </section>
+
+      <!-- Interactive FAQ Accordion Section -->
+      <section class="faq" id="faq">
+        <div class="section-heading reveal-on-scroll">
+          <p class="eyebrow">Got Questions?</p>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-accordion reveal-on-scroll" id="faqAccordion">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Where is G&amp;G Tech based and who do you serve?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>G&amp;G Tech is proudly based in Kenya 🇰🇪. We serve local startups, growing SMEs, and international businesses looking for modern, high-performance websites, mobile apps, and custom software systems.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How long does a typical project take to complete?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Standard business websites are typically delivered in 1 to 2 weeks. Web applications, mobile apps, and specialized business management systems generally take 2 to 4 weeks depending on overall features and scope.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Can you integrate local platforms like M-Pesa or SMS gateways?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes! We specialize in custom integrations including M-Pesa (Daraja API), bank payment gateways, SMS notification APIs (such as Africa's Talking), automated invoicing, and custom database APIs.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Do you offer maintenance and technical support after launch?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. We provide ongoing technical support, cloud hosting configuration, security monitoring, performance tuning, and feature improvements so your platform remains fast, secure, and up to date.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How do project payments and consultations work?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>We begin with a free consultation to review your requirements. Projects follow transparent milestone payments (initial deposit, progress demo review, and final handover) so you maintain 100% clarity.</p>
+            </div>
+          </details>
+        </div>
+      </section>
     </main>
+
+    <!-- Floating Quick Action Button -->
+    <a href="contact.html" class="floating-cta" title="Start a Project with G&G Tech Kenya">
+      <span class="flag-emoji">🇰🇪</span> Talk to Us
+    </a>
 
     <footer class="site-footer" id="contact">
       <div>
         <a class="brand footer-brand" href="index.html" aria-label="G&G Tech home">
           <span class="brand-mark">G&amp;G</span>
           <span class="brand-name">TECH</span>
+          <span class="kenya-badge">
+            <span class="kenya-flag-icon" aria-hidden="true">🇰🇪</span>
+            <span class="kenya-text">KENYA</span>
+          </span>
         </a>
         <p>Websites, apps, systems, software, IT consulting, and support.</p>
+        <p class="footer-kenya-note">
+          <span class="flag-emoji">🇰🇪</span> Engineered in Kenya for teams across East Africa &amp; beyond.
+        </p>
       </div>
 
       <div class="footer-contact">
@@ -148,5 +256,72 @@
         <a href="contact.html">Contact G&amp;G Tech</a>
       </div>
     </footer>
+
+    <!-- Zero-dependency Lightweight Interactive Script -->
+    <script>
+      // Mobile Navigation Drawer Toggle
+      const mobileNavToggle = document.getElementById("mobileNavToggle");
+      const mainNav = document.getElementById("mainNav");
+
+      if (mobileNavToggle && mainNav) {
+        mobileNavToggle.addEventListener("click", () => {
+          const isOpen = mainNav.classList.toggle("open");
+          mobileNavToggle.classList.toggle("active", isOpen);
+          mobileNavToggle.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close mobile drawer when clicking a link
+        mainNav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mainNav.classList.remove("open");
+            mobileNavToggle.classList.remove("active");
+            mobileNavToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      // Smooth FAQ Accordion Icon Toggle
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          const icon = item.querySelector(".faq-icon");
+          if (icon) {
+            icon.textContent = item.open ? "−" : "+";
+          }
+        });
+      });
+
+      // Scroll Reveal Observer (Ultra-lightweight Vanilla JS)
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealElements.forEach((el) => revealObserver.observe(el));
+      } else {
+        // Fallback for very old browsers
+        revealElements.forEach((el) => el.classList.add("revealed"));
+      }
+
+      // Mouse Hover Track Effect for Interactive Cards
+      document.querySelectorAll(".interactive-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty("--mouse-x", `${x}px`);
+          card.style.setProperty("--mouse-y", `${y}px`);
+        });
+      });
+    </script>
   </body>
 </html>

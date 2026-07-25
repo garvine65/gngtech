@@ -72,6 +72,46 @@ a {
   color: var(--deep);
 }
 
+/* Kenyan Flag Badge */
+.kenya-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 99px;
+  background: rgba(13, 79, 86, 0.08);
+  border: 1px solid rgba(85, 211, 219, 0.35);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  vertical-align: middle;
+}
+
+.kenya-badge .kenya-flag-icon {
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
+.kenya-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flag-emoji {
+  font-style: normal;
+  display: inline-block;
+  transform: scale(1.15);
+}
+
+.footer-kenya-note {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--teal);
+  font-weight: 600;
+}
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -179,22 +219,87 @@ h1 {
   gap: 14px;
 }
 
+/* Trust Badges */
+.hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.check-icon {
+  color: #179374;
+  font-weight: 800;
+}
+
 .hero-visual {
   display: grid;
   gap: 18px;
 }
 
 .logo-panel {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 330px;
   padding: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(201, 255, 217, 0.88), rgba(143, 181, 255, 0.92)),
+    linear-gradient(135deg, rgba(235, 255, 241, 0.82), rgba(225, 242, 255, 0.85)),
     linear-gradient(135deg, var(--mint), var(--sky));
   box-shadow: 0 28px 70px rgba(30, 102, 120, 0.22);
+  overflow: hidden;
+}
+
+.logo-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("kenya-flag-bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 300ms ease;
+}
+
+.logo-panel:hover::after {
+  opacity: 0.32;
+}
+
+.logo-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.kenya-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--deep);
+  letter-spacing: 0.15em;
 }
 
 .big-logo {
@@ -232,13 +337,39 @@ h1 {
   gap: 12px;
 }
 
-.service-stack a,
-.service-card,
-.steps article {
+/* Interactive Spotlight Cards */
+.interactive-card {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.68);
   box-shadow: 0 16px 40px rgba(22, 93, 109, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.interactive-card::before {
+  content: "";
+  position: absolute;
+  top: var(--mouse-y, -100px);
+  left: var(--mouse-x, -100px);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(85, 211, 219, 0.25) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.interactive-card:hover::before {
+  opacity: 1;
+}
+
+.interactive-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(85, 211, 219, 0.64);
+  box-shadow: 0 24px 50px rgba(13, 79, 86, 0.16);
 }
 
 .service-stack a {
@@ -246,7 +377,6 @@ h1 {
   grid-template-columns: auto 1fr;
   gap: 6px 14px;
   padding: 18px;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .service-stack span {
@@ -260,10 +390,7 @@ h1 {
 }
 
 .service-stack a:hover {
-  transform: translateY(-3px);
-  border-color: rgba(85, 211, 219, 0.58);
   background: linear-gradient(135deg, rgba(201, 255, 217, 0.9), rgba(143, 181, 255, 0.42));
-  box-shadow: 0 22px 46px rgba(23, 111, 115, 0.16);
 }
 
 .service-stack p,
@@ -276,7 +403,8 @@ h1 {
 }
 
 .services,
-.process {
+.process,
+.faq {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
   padding: 72px 0;
@@ -305,7 +433,19 @@ h2 {
   min-height: 190px;
   padding: 24px;
   cursor: pointer;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.card-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(85, 211, 219, 0.18);
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .service-card h3 {
@@ -315,12 +455,9 @@ h2 {
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(85, 211, 219, 0.64);
   background:
     linear-gradient(135deg, rgba(201, 255, 217, 0.94), rgba(143, 181, 255, 0.48)),
     rgba(255, 255, 255, 0.78);
-  box-shadow: 0 28px 58px rgba(23, 111, 115, 0.18);
 }
 
 .service-card:hover h3,
@@ -353,6 +490,122 @@ h2 {
   color: var(--deep);
   font-size: 1.08rem;
   font-weight: 800;
+}
+
+/* Interactive FAQ Accordion */
+.faq-accordion {
+  display: grid;
+  gap: 14px;
+  max-width: 920px;
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 32px rgba(22, 93, 109, 0.06);
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  overflow: hidden;
+}
+
+.faq-item[open] {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(85, 211, 219, 0.58);
+  box-shadow: 0 20px 45px rgba(23, 111, 115, 0.12);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--deep);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question:hover {
+  color: #179374;
+}
+
+.faq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: rgba(85, 211, 219, 0.18);
+  color: var(--teal);
+  font-size: 1.25rem;
+  font-weight: 800;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.faq-item[open] .faq-icon {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.faq-answer {
+  padding: 0 24px 22px 24px;
+  border-top: 1px solid rgba(16, 42, 50, 0.06);
+  margin-top: 4px;
+  padding-top: 16px;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+/* Floating Quick Action Button */
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background: var(--deep);
+  color: var(--white);
+  font-size: 0.92rem;
+  font-weight: 800;
+  box-shadow: 0 16px 36px rgba(13, 79, 86, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.floating-cta:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 22px 48px rgba(13, 79, 86, 0.45);
+  background: #145a60;
+}
+
+/* Scroll Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .site-footer {
@@ -511,15 +764,91 @@ h2 {
   transform: none !important;
 }
 
+/* Mobile Hamburger Menu Toggle Button */
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 3px;
+  background: var(--deep);
+  border-radius: 2px;
+  transition: transform 250ms ease, opacity 250ms ease;
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-nav-cta {
+  display: none;
+}
+
 @media (max-width: 900px) {
-  .site-header {
-    flex-wrap: wrap;
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
   }
 
   .main-nav {
-    order: 3;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    padding: 90px 30px 40px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    box-shadow: -15px 0 40px rgba(13, 79, 86, 0.15);
+    transition: right 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+  }
+
+  .main-nav.open {
+    right: 0;
+  }
+
+  .main-nav a {
+    font-size: 1.15rem;
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-nav-cta {
+    display: inline-flex;
+    margin-top: 16px;
+    padding: 12px 20px;
+    background: var(--deep);
+    color: var(--white) !important;
+    border-radius: 8px;
+    font-weight: 800;
+    text-align: center;
+    border-bottom: none !important;
   }
 
   .hero {
@@ -551,23 +880,14 @@ h2 {
   .hero,
   .services,
   .process,
+  .faq,
   .contact-page,
   .site-footer {
     width: min(100% - 28px, 1180px);
   }
 
-  .nav-cta {
-    display: none;
-  }
-
-  .main-nav {
-    gap: 18px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-
   h1 {
-    font-size: clamp(2.55rem, 14vw, 4rem);
+    font-size: clamp(2.4rem, 12vw, 3.8rem);
   }
 
   .hero-actions,
@@ -596,5 +916,12 @@ h2 {
 
   .footer-contact {
     text-align: left;
+  }
+
+  .floating-cta {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 }
