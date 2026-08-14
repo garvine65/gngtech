@@ -23,7 +23,19 @@
     >
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="intro-active">
+    <div class="brand-intro" id="brandIntro" aria-label="G and G Tech introduction" role="status">
+      <div class="brand-intro__content">
+        <div class="brand-intro__wordmark" aria-label="G and G">
+          <span class="brand-intro__letter brand-intro__letter--blue">G</span>
+          <span class="brand-intro__letter brand-intro__letter--ampersand">&amp;</span>
+          <span class="brand-intro__letter brand-intro__letter--green">G</span>
+        </div>
+        <span class="brand-intro__line" aria-hidden="true"></span>
+        <p class="brand-intro__tagline">Your trusted Kenyan company for your tech solutions.</p>
+      </div>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="G&G Tech home">
         <span class="brand-mark">G&amp;G</span>
@@ -257,8 +269,60 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
     <!-- Zero-dependency Lightweight Interactive Script -->
+     <!-- GSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP -->
     <script>
+      // Five-second brand reveal before the website becomes available.
+      const intro = document.getElementById("brandIntro");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (intro && window.gsap) {
+        const finishIntro = () => {
+          document.body.classList.remove("intro-active");
+          intro.setAttribute("aria-hidden", "true");
+          intro.remove();
+        };
+
+        if (prefersReducedMotion) {
+          gsap.set(".brand-intro__letter, .brand-intro__line, .brand-intro__tagline", { opacity: 1 });
+          gsap.to(intro, { autoAlpha: 0, duration: 0.25, delay: 0.6, onComplete: finishIntro });
+        } else {
+          const introTimeline = gsap.timeline({ onComplete: finishIntro });
+
+          introTimeline
+            .fromTo(intro, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, ease: "power1.out" })
+            .fromTo(".brand-intro__letter--blue", { xPercent: -180, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 0.3)
+            .fromTo(".brand-intro__letter--ampersand", { yPercent: -170, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.75, ease: "bounce.out" }, 0.9)
+            .fromTo(".brand-intro__letter--green", { xPercent: -180, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.5)
+            .fromTo(".brand-intro__line", { scaleX: 0, autoAlpha: 0 }, { scaleX: 1, autoAlpha: 1, duration: 0.35, ease: "power2.out" }, 2.3)
+            .fromTo(".brand-intro__tagline", { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" }, 2.6)
+            .to({}, { duration: 1.25 })
+            .to(intro, { autoAlpha: 0, duration: 0.6, ease: "power2.inOut" });
+        }
+      } else if (intro) {
+        // Keep the website accessible if the animation library cannot load.
+        document.body.classList.remove("intro-active");
+        intro.remove();
+      }
+
+      if (window.gsap) {
+        gsap.to(".site-header", {
+          x: 0,
+          duration: 2.5,
+          ease: "power1.inOut",
+          repeat: -1,
+          yoyo: true
+        });
+
+        gsap.to(".brand-mark", {
+          duration: 2,
+          repeat: -1,
+          ease: "none"
+        });
+      }
+
       // Mobile Navigation Drawer Toggle
       const mobileNavToggle = document.getElementById("mobileNavToggle");
       const mainNav = document.getElementById("mainNav");

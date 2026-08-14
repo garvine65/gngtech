@@ -22,10 +22,89 @@ body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 8% 12%, rgba(201, 255, 217, 0.92), transparent 30%),
-    radial-gradient(circle at 90% 4%, rgba(143, 181, 255, 0.8), transparent 34%),
-    linear-gradient(135deg, #f7fff9 0%, #eef9ff 46%, #eef3ff 100%);
+  background-image: url("gngbg.svg");
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+.brand-intro {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  background: #eafcef url("gngbg.svg") center / cover no-repeat;
+  isolation: isolate;
+}
+
+.brand-intro::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: rgba(234, 252, 239, 0.38);
+  backdrop-filter: blur(3px);
+}
+
+.brand-intro__content {
+  width: min(620px, 100%);
+  text-align: center;
+}
+
+.brand-intro__wordmark {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 22px);
+  font-size: clamp(5.5rem, 18vw, 10rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.1em;
+  filter: drop-shadow(0 16px 26px rgba(13, 79, 86, 0.18));
+}
+
+.brand-intro__letter {
+  display: inline-block;
+  opacity: 0;
+}
+
+.brand-intro__letter--blue {
+  color: #278ed3;
+}
+
+.brand-intro__letter--ampersand {
+  color: #145a60;
+  font-size: 0.75em;
+}
+
+.brand-intro__letter--green {
+  color: #a8f09b;
+}
+
+.brand-intro__line {
+  display: block;
+  width: min(370px, 75%);
+  height: 4px;
+  margin: 30px auto 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #278ed3, #145a60 50%, #a8f09b);
+  box-shadow: 0 7px 18px rgba(20, 90, 96, 0.2);
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.brand-intro__tagline {
+  margin: 0;
+  color: var(--deep);
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  opacity: 0;
 }
 
 a {

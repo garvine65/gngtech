@@ -1,0 +1,94 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eafcef"/>
+      <stop offset="45%" stop-color="#e7f4ee"/>
+      <stop offset="100%" stop-color="#e5f1fb"/>
+    </linearGradient>
+
+    <radialGradient id="blobTeal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#39b3a0" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#39b3a0" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#39b3a0" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="blobBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4fa9e0" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#4fa9e0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#4fa9e0" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="blobMint" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8de08a" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#8de08a" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#8de08a" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="blobDeep" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f2f2c" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#0f2f2c" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0f2f2c" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="vignette" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="15%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="85%" stop-color="#0f2f2c" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0f2f2c" stop-opacity="0.10"/>
+    </linearGradient>
+
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0.06
+                0 0 0 0 0.18
+                0 0 0 0 0.16
+                0 0 0 0.03 0"/>
+    </filter>
+
+    <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <!-- base wash -->
+  <rect width="1920" height="1080" fill="url(#base)"/>
+
+  <!-- soft mesh blobs, layered with transparency -->
+  <g filter="url(#softBlur)">
+    <ellipse cx="260" cy="180" rx="480" ry="380" fill="url(#blobMint)"/>
+    <ellipse cx="1650" cy="120" rx="520" ry="420" fill="url(#blobBlue)"/>
+    <ellipse cx="1500" cy="820" rx="600" ry="460" fill="url(#blobTeal)"/>
+    <ellipse cx="420" cy="900" rx="500" ry="380" fill="url(#blobBlue)"/>
+    <ellipse cx="980" cy="480" rx="700" ry="480" fill="url(#blobTeal)" opacity="0.5"/>
+    <ellipse cx="1150" cy="200" rx="260" ry="200" fill="url(#blobDeep)"/>
+  </g>
+
+  <!-- faint technical signal lines -->
+  <g stroke="#1c6b64" stroke-width="1" opacity="0.08">
+    <line x1="0" y1="260" x2="1920" y2="200"/>
+    <line x1="0" y1="640" x2="1920" y2="720"/>
+    <line x1="300" y1="0" x2="500" y2="1080"/>
+    <line x1="1400" y1="0" x2="1250" y2="1080"/>
+  </g>
+
+  <!-- drifting dot signals -->
+  <g fill="#2f9c8c" opacity="0.22">
+    <circle cx="180" cy="300" r="3"/>
+    <circle cx="240" cy="340" r="2"/>
+    <circle cx="1720" cy="250" r="3"/>
+    <circle cx="1680" cy="300" r="2"/>
+    <circle cx="1500" cy="900" r="3"/>
+    <circle cx="600" cy="950" r="2.5"/>
+    <circle cx="960" cy="150" r="2"/>
+    <circle cx="1100" cy="700" r="3"/>
+    <circle cx="330" cy="700" r="2"/>
+    <circle cx="1800" cy="700" r="2.5"/>
+  </g>
+
+  <!-- subtle grain for texture -->
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.5"/>
+
+  <!-- soft vignette for depth -->
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+</svg>
