@@ -89,6 +89,11 @@
 
         <div class="hero-visual reveal-on-scroll" aria-label="G&G Tech service preview">
           <div class="logo-panel interactive-card">
+            <span class="command-ring command-ring--one" aria-hidden="true"></span>
+            <span class="command-ring command-ring--two" aria-hidden="true"></span>
+            <span class="command-node command-node--one" aria-hidden="true"></span>
+            <span class="command-node command-node--two" aria-hidden="true"></span>
+            <span class="command-node command-node--three" aria-hidden="true"></span>
             <div class="kenya-hero-pill">
               <span class="flag-emoji">🇰🇪</span> G&amp;G TECH KENYA
             </div>
@@ -127,38 +132,65 @@
         <div class="service-grid">
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Website%20Design%20%26%20Development">
             <div class="card-badge">Web</div>
+            <span class="service-visual service-visual--web" aria-hidden="true"><i></i><i></i><i></i></span>
             <h3>Website Design &amp; Development</h3>
             <p>Business websites, landing pages, portfolios, ecommerce foundations, and redesigns.</p>
           </a>
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Mobile%20%26%20Web%20Apps">
             <div class="card-badge">Apps</div>
+            <span class="service-visual service-visual--apps" aria-hidden="true"><i></i><i></i></span>
             <h3>Mobile &amp; Web Apps</h3>
             <p>Clean, responsive applications for customers, staff, booking, reporting, and operations.</p>
           </a>
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Business%20Systems">
             <div class="card-badge">Systems</div>
+            <span class="service-visual service-visual--systems" aria-hidden="true"><i></i><i></i><i></i></span>
             <h3>Business Systems</h3>
             <p>Custom dashboards, management systems, automations, and workflow tools.</p>
           </a>
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Software%20Solutions">
             <div class="card-badge">Software</div>
+            <span class="service-visual service-visual--software" aria-hidden="true"><i>&lt;/&gt;</i></span>
             <h3>Software Solutions</h3>
             <p>Tailored software that connects data, users, and business processes in one place.</p>
           </a>
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=IT%20Consulting">
             <div class="card-badge">Consulting</div>
+            <span class="service-visual service-visual--consulting" aria-hidden="true"><i></i><i></i></span>
             <h3>IT Consulting</h3>
             <p>Advice on platforms, hosting, security, integrations, and product planning.</p>
           </a>
           <a class="service-card interactive-card reveal-on-scroll" href="contact.html?service=Support%20%26%20Improvement">
             <div class="card-badge">Support</div>
+            <span class="service-visual service-visual--support" aria-hidden="true"><i>+</i></span>
             <h3>Support &amp; Improvement</h3>
             <p>Ongoing updates, troubleshooting, performance tuning, and technical maintenance.</p>
           </a>
         </div>
       </section>
 
+      <section class="network-section reveal-on-scroll" aria-labelledby="network-title">
+        <div class="network-copy">
+          <p class="eyebrow">Built here. Ready anywhere.</p>
+          <h2 id="network-title">Kenyan thinking, connected to every opportunity.</h2>
+          <p>We pair local context with technology that performs for teams across East Africa and beyond.</p>
+        </div>
+        <div class="network-map" aria-hidden="true">
+          <svg viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 183C230 111 291 243 365 163C438 83 514 99 603 137" />
+            <path d="M128 183C229 262 302 270 418 214C498 175 549 210 603 137" />
+            <path d="M365 163C391 185 399 198 418 214" />
+          </svg>
+          <span class="network-node network-node--ke">KE</span>
+          <span class="network-node network-node--one"></span>
+          <span class="network-node network-node--two"></span>
+          <span class="network-node network-node--three"></span>
+          <span class="network-node network-node--four"></span>
+        </div>
+      </section>
+
       <section class="process" id="process">
+        <span class="pipeline-glow" aria-hidden="true"></span>
         <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">How we work</p>
           <h2>A simple path from idea to launch.</h2>
@@ -278,11 +310,25 @@
       const intro = document.getElementById("brandIntro");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+      function animateSiteEntrance() {
+        if (!window.gsap || prefersReducedMotion) return;
+
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .from(".site-header", { y: -24, autoAlpha: 0, duration: 0.55 })
+          .from(".hero-content > *", { y: 26, autoAlpha: 0, duration: 0.68, stagger: 0.09 }, 0.12)
+          .from(".logo-panel", { y: 38, scale: 0.96, autoAlpha: 0, duration: 0.8 }, 0.28)
+          .from(".service-stack a", { x: 24, autoAlpha: 0, duration: 0.55, stagger: 0.1 }, 0.5);
+
+        gsap.to(".logo-panel", { y: -8, duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+        gsap.to(".floating-cta", { y: -5, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: -1 });
+      }
+
       if (intro && window.gsap) {
         const finishIntro = () => {
           document.body.classList.remove("intro-active");
           intro.setAttribute("aria-hidden", "true");
           intro.remove();
+          animateSiteEntrance();
         };
 
         if (prefersReducedMotion) {
@@ -305,23 +351,10 @@
         // Keep the website accessible if the animation library cannot load.
         document.body.classList.remove("intro-active");
         intro.remove();
+        animateSiteEntrance();
       }
 
-      if (window.gsap) {
-        gsap.to(".site-header", {
-          x: 0,
-          duration: 2.5,
-          ease: "power1.inOut",
-          repeat: -1,
-          yoyo: true
-        });
-
-        gsap.to(".brand-mark", {
-          duration: 2,
-          repeat: -1,
-          ease: "none"
-        });
-      }
+      if (!intro) animateSiteEntrance();
 
       // Mobile Navigation Drawer Toggle
       const mobileNavToggle = document.getElementById("mobileNavToggle");
@@ -377,6 +410,7 @@
       }
 
       // Mouse Hover Track Effect for Interactive Cards
+      const canUseMagneticEffects = window.matchMedia("(pointer: fine)").matches && !prefersReducedMotion;
       document.querySelectorAll(".interactive-card").forEach((card) => {
         card.addEventListener("mousemove", (e) => {
           const rect = card.getBoundingClientRect();
@@ -384,6 +418,16 @@
           const y = e.clientY - rect.top;
           card.style.setProperty("--mouse-x", `${x}px`);
           card.style.setProperty("--mouse-y", `${y}px`);
+
+          if (canUseMagneticEffects) {
+            const rotateY = ((x / rect.width) - 0.5) * 4;
+            const rotateX = ((y / rect.height) - 0.5) * -4;
+            card.style.transform = `perspective(900px) translate3d(0, -5px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          }
+        });
+
+        card.addEventListener("mouseleave", () => {
+          if (canUseMagneticEffects) card.style.removeProperty("transform");
         });
       });
     </script>
