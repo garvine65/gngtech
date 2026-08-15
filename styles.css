@@ -32,7 +32,13 @@ body.intro-active {
 .brand-intro {
   position: fixed;
   z-index: 1000;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100dvh;
   display: grid;
   place-items: center;
   padding: 24px;
@@ -957,6 +963,9 @@ h2 {
 @media (max-width: 620px) {
   .brand-intro {
     padding: 20px;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100dvh;
   }
 
   .brand-intro__wordmark {
