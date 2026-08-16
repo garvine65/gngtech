@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="intro-active">
+    <div id="scroll-progress" aria-hidden="true"></div>
     <div class="brand-intro" id="brandIntro" aria-label="G and G Tech introduction" role="status">
       <div class="brand-intro__content">
         <div class="brand-intro__wordmark" aria-label="G and G">
@@ -65,11 +66,14 @@
 
     <main>
       <section class="hero">
+        <div class="aurora aurora-a" aria-hidden="true"></div>
+        <div class="aurora aurora-b" aria-hidden="true"></div>
+        <div class="aurora aurora-c" aria-hidden="true"></div>
         <div class="hero-content reveal-on-scroll">
           <p class="eyebrow kenya-eyebrow">
             <span class="flag-emoji">🇰🇪</span> PROUDLY BASED IN KENYA &bull; SERVING GLOBAL TEAMS
           </p>
-          <h1>Reliable IT services for businesses ready to build smarter.</h1>
+          <h1 id="hero-headline">Reliable IT services for businesses ready to build smarter.</h1>
           <p class="hero-copy">
             G&amp;G Tech designs and builds websites, mobile apps, business systems,
             custom software, and IT consulting solutions that help your operations move faster.
@@ -124,7 +128,7 @@
       </section>
 
       <section class="services" id="services">
-        <div class="section-heading reveal-on-scroll">
+        <div class="section-heading reveal-on-scroll" data-count="01">
           <p class="eyebrow">What we do</p>
           <h2>Practical technology, built for everyday business needs.</h2>
         </div>
@@ -191,7 +195,7 @@
 
       <section class="process" id="process">
         <span class="pipeline-glow" aria-hidden="true"></span>
-        <div class="section-heading reveal-on-scroll">
+        <div class="section-heading reveal-on-scroll" data-count="02">
           <p class="eyebrow">How we work</p>
           <h2>A simple path from idea to launch.</h2>
         </div>
@@ -214,7 +218,7 @@
 
       <!-- Interactive FAQ Accordion Section -->
       <section class="faq" id="faq">
-        <div class="section-heading reveal-on-scroll">
+        <div class="section-heading reveal-on-scroll" data-count="03">
           <p class="eyebrow">Got Questions?</p>
           <h2>Frequently Asked Questions</h2>
         </div>
@@ -321,6 +325,9 @@
 
         gsap.to(".logo-panel", { y: -8, duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
         gsap.to(".floating-cta", { y: -5, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: -1 });
+
+        // Text scramble on hero headline after site entrance
+        setTimeout(() => scrambleText(document.getElementById('hero-headline')), 350);
       }
 
       if (intro && window.gsap) {
@@ -430,6 +437,146 @@
           if (canUseMagneticEffects) card.style.removeProperty("transform");
         });
       });
+
+      // ===== PREMIUM VISUAL ENHANCEMENTS =====
+
+      // Text Scramble Effect
+      function scrambleText(el) {
+        if (!el || prefersReducedMotion) return;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#';
+        const original = el.innerText;
+        const totalMs = 1100;
+        const tickMs = 33;
+        const totalTicks = Math.ceil(totalMs / tickMs);
+        let tick = 0;
+        const timer = setInterval(() => {
+          const progress = tick / totalTicks;
+          el.innerText = original.split('').map((char, i) => {
+            if (char === ' ' || char === ',' || char === '.') return char;
+            if (i / original.length < progress) return char;
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          tick++;
+          if (tick > totalTicks) { clearInterval(timer); el.innerText = original; }
+        }, tickMs);
+      }
+
+      // Scroll Progress Bar
+      const scrollProgressBar = document.getElementById('scroll-progress');
+      if (scrollProgressBar) {
+        const updateProgress = () => {
+          const max = document.body.scrollHeight - window.innerHeight;
+          const pct = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+          scrollProgressBar.style.width = `${pct * 100}%`;
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+      }
+
+      // SVG Network Path Draw Animation
+      (function initNetworkDraw() {
+        const networkSection = document.querySelector('.network-section');
+        const networkPaths = document.querySelectorAll('.network-map path');
+        if (!networkSection || !networkPaths.length || !('IntersectionObserver' in window)) return;
+
+        networkPaths.forEach(path => {
+          const len = path.getTotalLength();
+          path.dataset.pathLen = len;
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+          path.style.animation = 'none';
+          path.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+
+        const netObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            networkPaths.forEach((path, i) => {
+              setTimeout(() => { path.style.strokeDashoffset = '0'; }, i * 260);
+              setTimeout(() => {
+                path.style.strokeDasharray = '9 8';
+                path.style.strokeDashoffset = '0';
+                path.style.transition = 'none';
+                path.style.animation = 'route-flow 5s linear infinite';
+              }, 1500 + i * 260);
+            });
+            netObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.3 });
+
+        netObserver.observe(networkSection);
+      })();
+
+      // Magnetic Nav Links (desktop pointer only)
+      (function initMagneticNav() {
+        const isFine = window.matchMedia('(pointer: fine)').matches;
+        if (!isFine || prefersReducedMotion || !window.gsap) return;
+        document.querySelectorAll('.main-nav a').forEach(link => {
+          const xTo = gsap.quickTo(link, 'x', { duration: 0.35, ease: 'power3.out' });
+          const yTo = gsap.quickTo(link, 'y', { duration: 0.35, ease: 'power3.out' });
+          link.addEventListener('mousemove', e => {
+            const r = link.getBoundingClientRect();
+            xTo((e.clientX - (r.left + r.width / 2)) * 0.28);
+            yTo((e.clientY - (r.top + r.height / 2)) * 0.28);
+          });
+          link.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
+        });
+      })();
+
+      // Particle Canvas Background
+      (function initParticles() {
+        if (prefersReducedMotion) return;
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const COLORS = [[85,211,219],[168,240,155],[39,142,211]];
+        let W = canvas.width = window.innerWidth;
+        let H = canvas.height = window.innerHeight;
+        const mouse = { x: -999, y: -999 };
+
+        const particles = Array.from({ length: 72 }, () => ({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.6 + 0.8,
+          dx: (Math.random() - 0.5) * 0.35,
+          dy: (Math.random() - 0.5) * 0.35,
+          c: COLORS[Math.floor(Math.random() * COLORS.length)],
+          a: Math.random() * 0.28 + 0.06
+        }));
+
+        window.addEventListener('resize', () => {
+          W = canvas.width = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        }, { passive: true });
+
+        window.addEventListener('mousemove', e => {
+          mouse.x = e.clientX; mouse.y = e.clientY;
+        }, { passive: true });
+
+        function raf() {
+          ctx.clearRect(0, 0, W, H);
+          for (const p of particles) {
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 110 && dist > 0.1) {
+              const f = (110 - dist) / 110 * 1.8;
+              p.x += dx / dist * f;
+              p.y += dy / dist * f;
+            }
+            p.x = (p.x + p.dx + W) % W;
+            p.y = (p.y + p.dy + H) % H;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+            ctx.fillStyle = `rgba(${p.c[0]},${p.c[1]},${p.c[2]},${p.a})`;
+            ctx.fill();
+          }
+          requestAnimationFrame(raf);
+        }
+        raf();
+      })();
+
     </script>
+
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
   </body>
 </html>

@@ -1341,3 +1341,175 @@ h1 {
   .process { padding: 56px 24px; border-radius: 24px; }
   .service-card { min-height: auto; }
 }
+
+/* ======================================================
+   PREMIUM VISUAL ENHANCEMENTS
+   All additions — no existing rules modified.
+   ====================================================== */
+
+/* 1 — Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 10000;
+  background: linear-gradient(90deg, #a8f09b, #55d3db 50%, #278ed3);
+  pointer-events: none;
+  transition: width 80ms linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* 2 — Particle Canvas */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 3 — Aurora Hero Blobs */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aurora-a {
+  width: min(520px, 52vw);
+  height: min(520px, 52vw);
+  background: radial-gradient(circle, rgba(85, 211, 219, 0.24), transparent 68%);
+  top: -10%;
+  right: -5%;
+  filter: blur(58px);
+  animation: aurora-drift-a 13s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.aurora-b {
+  width: min(400px, 40vw);
+  height: min(400px, 40vw);
+  background: radial-gradient(circle, rgba(168, 240, 155, 0.2), transparent 68%);
+  top: 22%;
+  right: 22%;
+  filter: blur(48px);
+  animation: aurora-drift-b 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.aurora-c {
+  width: min(320px, 34vw);
+  height: min(320px, 34vw);
+  background: radial-gradient(circle, rgba(39, 142, 211, 0.16), transparent 68%);
+  bottom: 6%;
+  right: 6%;
+  filter: blur(52px);
+  animation: aurora-drift-c 15s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes aurora-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-45px, 35px) scale(1.14); }
+}
+@keyframes aurora-drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, -40px) scale(0.9); }
+}
+@keyframes aurora-drift-c {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-22px, -28px) scale(1.1); }
+}
+
+/* Ensure hero content sits above aurora blobs */
+.hero-content,
+.hero-visual {
+  position: relative;
+  z-index: 2;
+}
+
+/* 4 — Iridescent Full-Spectrum Card Shimmer (upgrade) */
+.interactive-card::before {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+    circle,
+    rgba(85, 211, 219, 0.32) 0%,
+    rgba(168, 240, 155, 0.18) 35%,
+    rgba(39, 142, 211, 0.12) 58%,
+    transparent 76%
+  );
+}
+
+/* 5 — Floating CTA Double Pulse Ring */
+.floating-cta {
+  overflow: visible;
+}
+
+.floating-cta::before,
+.floating-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(13, 79, 86, 0.45);
+  pointer-events: none;
+  animation: pulse-ring 2.8s ease-out infinite;
+}
+
+.floating-cta::after {
+  animation-delay: 1.4s;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.65; }
+  100% { transform: scale(1.68); opacity: 0;    }
+}
+
+/* 6 — Section Watermark Numbers */
+.section-heading[data-count] {
+  position: relative;
+}
+
+.section-heading[data-count]::before {
+  content: attr(data-count);
+  position: absolute;
+  top: -0.12em;
+  left: -0.08em;
+  font-size: clamp(6rem, 14vw, 10rem);
+  font-weight: 800;
+  color: var(--teal);
+  opacity: 0.045;
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.08em;
+  z-index: 0;
+  user-select: none;
+}
+
+.section-heading[data-count] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Reduced-Motion: suppress all new animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a, .aurora-b, .aurora-c {
+    animation: none;
+  }
+  .floating-cta::before,
+  .floating-cta::after {
+    display: none;
+  }
+  #scroll-progress {
+    transition: none;
+  }
+  #particle-canvas {
+    display: none;
+  }
+}
