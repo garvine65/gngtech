@@ -14,6 +14,15 @@
     <meta property="og:description" content="Designs and builds websites, mobile apps, business systems, and IT solutions for teams in Kenya and globally.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gngtech.co.ke">
+    <meta property="og:image" content="https://gngtech.co.ke/kenya-flag-bg.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_KE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="G&G Tech | Reliable IT Services in Kenya">
+    <meta name="twitter:description" content="Websites, apps, systems, software & IT consulting for Kenyan businesses.">
+    <meta name="twitter:image" content="https://gngtech.co.ke/kenya-flag-bg.png">
+    <link rel="canonical" href="https://gngtech.co.ke/">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +31,51 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="styles.css">
+
+    <!-- LocalBusiness Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "G&G Tech",
+      "alternateName": "GNG Tech",
+      "url": "https://gngtech.co.ke",
+      "logo": "https://gngtech.co.ke/gngbg.svg",
+      "image": "https://gngtech.co.ke/kenya-flag-bg.png",
+      "description": "G&G Tech is a Kenyan technology company building modern websites, mobile apps, custom business systems, software, and IT solutions for clients in Kenya and beyond.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "KE",
+        "addressRegion": "Nairobi"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Kenya" },
+        { "@type": "Continent", "name": "Africa" }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "admin@gngtech.co.ke",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Swahili"]
+      },
+      "sameAs": [
+        "https://gngtech.co.ke"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "IT Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Design & Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile & Web Apps" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Systems" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software Solutions" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IT Consulting" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Support & Improvement" } }
+        ]
+      },
+      "priceRange": "KES"
+    }
+    </script>
   </head>
   <body class="intro-active">
     <div id="scroll-progress" aria-hidden="true"></div>
